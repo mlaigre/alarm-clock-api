@@ -1,5 +1,5 @@
 import { Handler, HandlerEvent, HandlerContext } from "@netlify/functions"
-import { db } from "./db";
+import { db } from "../db";
 
 export const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
     const collection = await db()
