@@ -1,11 +1,11 @@
 import { Handler, HandlerEvent, HandlerContext } from "@netlify/functions"
-import { db } from "../db";
+import { differenceInMinutes, isAfter, subHours } from "date-fns";
 
 export const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
-    const collection = await db()
-    const value = await collection.findOne()
-    console.log(value)
-    const { color } = value
+    const currentTime = new Date()
+    const wakingTime = new Date('2023-05-30 07:00:00')
+    console.log(differenceInMinutes(currentTime, wakingTime));
+    const color = isAfter(currentTime, subHours(wakingTime, 1)) ? '3B240B' : '000000'
     return {
         statusCode: 200,
         body: JSON.stringify({ color }),
