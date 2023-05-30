@@ -5,6 +5,6 @@ export async function db() {
     const mongoClient = await new MongoClient(mongoUrl).connect()
     const db = mongoClient.db()
     return db.collection<{
-        color: string
+        wakingTime: string
     }>('Color')
 }
